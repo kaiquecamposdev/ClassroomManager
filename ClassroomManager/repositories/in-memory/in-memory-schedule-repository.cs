@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Cryptography;
 
-namespace ClassroomManager.models
+namespace ClassroomManager.repositories.inMemory
 {
-  internal class Schedule
+  internal class InMemoryScheduleRepository : IScheduleRepository
   {
     public int Id { get; set; } = RandomNumberGenerator.GetInt32(20);
     public string Description { get; set; }
     public DateTime DateStart { get; set; } = DateTime.Now;
     public DateTime DateEnd { get; set; }
     public int EmployeeId { get; set; }
-    public Employee Employee { get; set; }
+    public IEmployeeRepository Employee { get; set; }
     public int EquipmentId { get; set; }
-    public Equipment Equipment { get; set; }
+    public IEquipmentRepository Equipment { get; set; }
 
-    public Schedule(int id, string description, DateTime dateStart, DateTime dateEnd, int employeeId, Employee employee, int equipmentId, Equipment equipment)
+    public InMemoryScheduleRepository(int id, string description, DateTime dateStart, DateTime dateEnd, int employeeId, Employee employee, int equipmentId, Equipment equipment)
     {
       this.Id = id;
       this.Description = description;

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using System.Security.Cryptography;
 
-namespace ClassroomManager.models
+namespace ClassroomManager.repositories.inMemory
 {
   public enum STATUS
   {
@@ -14,9 +8,9 @@ namespace ClassroomManager.models
     RESERVED,
     BORROWED,
   }
-  internal class Equipment
+  internal class InMemoryEquipmentRepository
   {
-    public Equipment() { }
+    public InMemoryEquipmentRepository() { }
     public int Id { get; set; } = RandomNumberGenerator.GetInt32(20);
     public string Name { get; set; }
     public string Description { get; set; }
@@ -26,7 +20,7 @@ namespace ClassroomManager.models
     public int Quantity { get; set; }
     public STATUS Status { get; set; }
 
-    public Equipment(int id, string name, string description, string brand, string model, string photo, int quantity, STATUS status)
+    public InMemoryEquipmentRepository(int id, string name, string description, string brand, string model, string photo, int quantity, STATUS status)
     {
       this.Id = id;
       this.Name = name;

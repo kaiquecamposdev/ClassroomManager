@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
-namespace ClassroomManager.models
+namespace ClassroomManager.repositories.inMemory
 {
   public enum ROLE
   {
@@ -8,9 +9,9 @@ namespace ClassroomManager.models
     TEACHER,
     COORDINATOR,
   }
-  internal class Employee
+  internal class InMemoryEmployeeRepository : IEmployeeRepository
   {
-    public Employee() { }
+    public InMemoryEmployeeRepository() { }
     public int Id { get; set; }
     public string Name { get; set; }
     public string Telephone { get; set; }
@@ -18,7 +19,7 @@ namespace ClassroomManager.models
     public int Enroll { get; set; }
     public ROLE Role { get; set; }
 
-    public Employee(int id, string name, string telephone, string password, int enroll, ROLE role)
+    public InMemoryEmployeeRepository(int id, string name, string telephone, string password, int enroll, ROLE role)
     {
       this.Id = id;
       this.Name = name;
