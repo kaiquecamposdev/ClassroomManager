@@ -9,6 +9,13 @@
 
   <ItemGroup>
     <PackageReference Include="Sharprompt" Version="2.4.5" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="promptio\controllers\equipments\" />
+    <Folder Include="promptio\controllers\report\" />
+    <Folder Include="promptio\controllers\schedules\" />
   </ItemGroup>
 
 </Project>
