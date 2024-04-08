@@ -1,18 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClassroomManager.repositories.inMemory
+﻿namespace ClassroomManager.repositories.inMemory
 {
   public class InMemoryEmployeesRepository : IEmployeesRepository
   {
-    private List<Employee> items = new List<Employee>();
+    private readonly List<Employee> items = [];
 
-    public Employee Create(Employee data)
+    public Employee Create(Employee employee)
     {
-      
+      this.items.Add(employee ?? throw new Exception("Funcionário não criado!"));
+
+      return employee;
+    }
+
+    public Employee FindByEnroll(int enroll)
+    {
+      var employee = this.items.Find((employee) => employee.Enroll == enroll);
+
+      return employee ?? throw new Exception("Funcionário não encontrado!");
+    }
+
+    public Employee FindByEnrollAndPassword(int enroll, string password)
+    {
+      var employee = this.items.Find((employee) => employee.Enroll == enroll && employee.Password == password);
+
+      return employee ?? throw new Exception("Funcionário não encontrado!");
     }
 
     public Employee FindById(string id)
