@@ -1,6 +1,6 @@
-﻿using ClassroomManager.repositories.models;
+﻿using ClassroomManager.models;
 
-namespace ClassroomManager.repositories.inMemory
+namespace ClassroomManager.models
 {
   public class Schedule(int id, string description, DateTime dateStart, DateTime dateEnd, int employeeId, Employee employee, int equipmentId, Equipment equipment)
   {

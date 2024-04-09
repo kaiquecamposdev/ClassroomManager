@@ -1,26 +1,28 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.promptio.controllers.employees;
-using ClassroomManager.Promptio.Controllers.Employees;
 
-internal class Program
+namespace ClassroomManager 
 {
-  private static void Main(string[] args)
+  class Program
   {
-    var _inputProvider = new SharpromptProvider();
-
-    Console.WriteLine("Bem-vindo ao Classroom Manager!");
-
-    var acceptLogin = _inputProvider.GetBoolInput("Deseja fazer login?");
-
-    if (acceptLogin)
+    static void Main(string[] args)
     {
-      Authenticate pluginAuthenticate = new();
-      pluginAuthenticate.Execute();
-    }
-    else
-    {
-      Register pluginRegister = new();
-      pluginRegister.Execute();
+      SharpromptProvider _inputProvider = new();
+
+      Console.WriteLine("Bem-vindo ao Classroom Manager!\b");
+
+      var acceptRegister = _inputProvider.GetBoolInput("Já possui cadastro?");
+
+      if (acceptRegister)
+      {
+        Authenticate pluginAuthenticate = new();
+        pluginAuthenticate.Execute();
+      }
+      else
+      {
+        Register pluginRegister = new();
+        pluginRegister.Execute();
+      }
     }
   }
 }

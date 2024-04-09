@@ -8,15 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
-    <PackageReference Include="Sharprompt" Version="2.4.5" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <Compile Remove="promptio\controllers\employee\**" />
+    <EmbeddedResource Remove="promptio\controllers\employee\**" />
+    <None Remove="promptio\controllers\employee\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="promptio\controllers\equipments\" />
-    <Folder Include="promptio\controllers\report\" />
-    <Folder Include="promptio\controllers\schedules\" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Sharprompt" Version="2.4.5" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,6 @@
-﻿namespace ClassroomManager.repositories
+﻿using ClassroomManager.models;
+
+namespace ClassroomManager.repositories
 {
   public interface IEmployeesRepository
   {

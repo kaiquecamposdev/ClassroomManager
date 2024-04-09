@@ -1,5 +1,6 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.repositories;
+using ClassroomManager.models;
 
 namespace ClassroomManager.usecases
 {

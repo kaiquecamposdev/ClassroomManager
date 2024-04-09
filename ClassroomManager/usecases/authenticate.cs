@@ -12,12 +12,12 @@ namespace ClassroomManager.usecases
 
     public Employee Execute(IAuthenticateEmployee data)
     {
-      var employee = _employeesRepository.FindByEnrollAndPassword(data.Enroll, data.Password) ?? throw new Exception("Funcion·rio n„o existe!");
+      var employee = _employeesRepository.FindByEnrollAndPassword(data.Enroll, data.Password) ?? throw new Exception("Funcion√°rio n√£o existe!");
       var passwordMatch = _bcryptProvider.VerifyPassword(data.Password, employee.Password);
 
       if (passwordMatch == false)
       {
-        throw new Exception("Credenciais inv·lidas!");
+        throw new Exception("Credenciais inv√°lidas!");
       }
 
       return employee;

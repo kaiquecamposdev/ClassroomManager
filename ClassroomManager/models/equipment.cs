@@ -1,7 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace ClassroomManager.repositories.models
-
+namespace ClassroomManager.models
 {
   public enum STATUS
   {

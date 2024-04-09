@@ -1,8 +1,6 @@
-﻿
-using ClassroomManager.repositories.inMemory;
-using ClassroomManager.usecases;
+﻿using ClassroomManager.repositories.inMemory;
 
-namespace ClassroomManager.repositories
+namespace ClassroomManager.usecases.factories
 {
   public static class MakeAuthenticateEmployeeUseCase
   {

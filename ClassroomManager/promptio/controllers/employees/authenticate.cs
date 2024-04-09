@@ -1,12 +1,11 @@
-﻿using ClassroomManager.repositories.models;
-using ClassroomManager.Promptio.Controllers.Employees;
-using Sharprompt;
+﻿using ClassroomManager.promptio.controllers.employees;
+using ClassroomManager.usecases.factories;
 using ClassroomManager.repositories;
 using ClassroomManager.usecases;
 using ClassroomManager.models;
 using ClassroomManager.lib;
 
-namespace ClassroomManager.Promptio.Controllers.Employees
+namespace ClassroomManager.promptio.controllers.employees
 {
     public class Authenticate()
     {
@@ -14,8 +13,8 @@ namespace ClassroomManager.Promptio.Controllers.Employees
 
       public Employee Execute()
       {
-        var enroll = _inputProvider.GetIntInput("Digite o número de matrícula do funcionário:");
-        var password = _inputProvider.GetPasswordInput("Digite a senha do funcionário:");
+        var enroll = _inputProvider.GetIntInput("Digite o número de matrícula do funcionário");
+        var password = _inputProvider.GetPasswordInput("Digite a senha do funcionário");
 
         AuthenticateEmployee authenticateEmployeeRequest = new(enroll, password);
         AuthenticateEmployee authEmployee = new(enroll: authenticateEmployeeRequest.Enroll, password: authenticateEmployeeRequest.Password);

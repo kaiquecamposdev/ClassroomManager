@@ -1,4 +1,6 @@
-﻿namespace ClassroomManager.repositories.inMemory
+﻿using ClassroomManager.models;
+
+namespace ClassroomManager.repositories.inMemory
 {
   public class InMemoryEmployeesRepository : IEmployeesRepository
   {

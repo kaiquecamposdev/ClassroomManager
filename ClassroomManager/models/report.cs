@@ -1,6 +1,6 @@
-﻿using ClassroomManager.repositories;
+﻿using ClassroomManager.models;
 
-namespace ClassroomManager.repositories.models
+namespace ClassroomManager.models
 {
   public class Report(int id, string description, DateTime date, int employeeId, Employee employee, int equipmentId, Equipment equipment)
   {
