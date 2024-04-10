@@ -11,7 +11,7 @@ namespace ClassroomManager
 
       Console.WriteLine("Bem-vindo ao Classroom Manager!\b");
 
-      var acceptRegister = _inputProvider.GetBoolInput("Já possui cadastro?");
+      bool acceptRegister = _inputProvider.GetBoolInput("Já possui cadastro?");
 
       if (acceptRegister)
       {

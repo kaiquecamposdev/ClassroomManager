@@ -11,16 +11,16 @@ namespace ClassroomManager.usecases
 
     public Employee Execute(Employee data)
     {
-      var password_hash = _bcryptProvider.HashPassword(data.Password);
+      string password_hash = _bcryptProvider.HashPassword(data.Password);
 
-      var employeeWithSameEnroll = _employeesRepository.FindByEnroll(data.Enroll);
+      Employee employeeWithSameEnroll = _employeesRepository.FindByEnroll(data.Enroll);
 
       if (employeeWithSameEnroll != null)
-      {
+      { 
         throw new Exception("Funcionário já existe!");
       }
 
-      var employee = _employeesRepository.Create(new Employee(data.Name, data.Telephone, password_hash, data.Enroll, data.Role));
+      Employee employee = _employeesRepository.Create(new(data.Name, data.Telephone, password_hash, data.Enroll, data.Role));
 
       return employee;
     }

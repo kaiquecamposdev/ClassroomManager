@@ -12,8 +12,8 @@ namespace ClassroomManager.usecases
 
     public Employee Execute(IAuthenticateEmployee data)
     {
-      var employee = _employeesRepository.FindByEnrollAndPassword(data.Enroll, data.Password) ?? throw new Exception("Funcionário não existe!");
-      var passwordMatch = _bcryptProvider.VerifyPassword(data.Password, employee.Password);
+      Employee employee = _employeesRepository.FindByEnroll(data.Enroll) ?? throw new Exception("Funcionário não existe!");
+      bool passwordMatch = _bcryptProvider.VerifyPassword(data.Password, employee.Password);
 
       if (passwordMatch == false)
       {

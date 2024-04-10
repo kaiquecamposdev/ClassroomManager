@@ -1,35 +1,38 @@
-﻿using ClassroomManager.models;
+﻿using ClassroomManager.lib;
+using ClassroomManager.models;
+using ClassroomManager.models.interfaces;
+using Sharprompt;
 
 namespace ClassroomManager.repositories.inMemory
 {
   public class InMemoryEmployeesRepository : IEmployeesRepository
   {
-    private readonly List<Employee> items = [];
+    private readonly List<Employee> items;
+    private readonly BcryptProvider _bcryptProvider = new();
+    public InMemoryEmployeesRepository()
+    {
+      items = new List<Employee>()
+        {
+            new Employee("Admin", 123456789, password: _bcryptProvider.HashPassword("admin"), 123456, ROLE.ADMIN)
+        };
+    }
 
     public Employee Create(Employee employee)
     {
-      this.items.Add(employee ?? throw new Exception("Funcionário não criado!"));
+      items.Add(employee ?? throw new Exception("Funcionário não criado!"));
 
       return employee;
+    }
+    public Employee FindById(string id)
+    {
+      throw new NotImplementedException();
     }
 
     public Employee FindByEnroll(int enroll)
     {
-      var employee = this.items.Find((employee) => employee.Enroll == enroll);
+      Employee employee = items.Find((employee) => employee.Enroll == enroll) ?? throw new Exception("Funcionário não encontrado!"); ;
 
-      return employee ?? throw new Exception("Funcionário não encontrado!");
-    }
-
-    public Employee FindByEnrollAndPassword(int enroll, string password)
-    {
-      var employee = this.items.Find((employee) => employee.Enroll == enroll && employee.Password == password);
-
-      return employee ?? throw new Exception("Funcionário não encontrado!");
-    }
-
-    public Employee FindById(string id)
-    {
-      throw new NotImplementedException();
+      return employee;
     }
 
     public void Remove(string id)

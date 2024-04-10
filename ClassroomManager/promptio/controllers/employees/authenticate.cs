@@ -13,8 +13,8 @@ namespace ClassroomManager.promptio.controllers.employees
 
       public Employee Execute()
       {
-        var enroll = _inputProvider.GetIntInput("Digite o número de matrícula do funcionário");
-        var password = _inputProvider.GetPasswordInput("Digite a senha do funcionário");
+        int enroll = _inputProvider.GetIntInput("Digite o número de matrícula do funcionário");
+        string password = _inputProvider.GetPasswordInput("Digite a senha do funcionário");
 
         AuthenticateEmployee authenticateEmployeeRequest = new(enroll, password);
         AuthenticateEmployee authEmployee = new(enroll: authenticateEmployeeRequest.Enroll, password: authenticateEmployeeRequest.Password);
