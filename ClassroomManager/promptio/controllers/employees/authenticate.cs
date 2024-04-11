@@ -9,20 +9,32 @@ namespace ClassroomManager.promptio.controllers.employees
 {
     public class Authenticate()
     {
-      private readonly SharpromptProvider _inputProvider = new();
+      private readonly SharpromptProvider _prompt = new();
 
       public Employee Execute()
       {
-        int enroll = _inputProvider.GetIntInput("Digite o número de matrícula do funcionário");
-        string password = _inputProvider.GetPasswordInput("Digite a senha do funcionário");
+        Console.Clear();
+        Console.WriteLine("Autenticação de Funcionários\n");
 
-        AuthenticateEmployee authenticateEmployeeRequest = new(enroll, password);
-        AuthenticateEmployee authEmployee = new(enroll: authenticateEmployeeRequest.Enroll, password: authenticateEmployeeRequest.Password);
+        int enroll = _prompt.GetIntInput("Número de matrícula");
+        string password = _prompt.GetPasswordInput("Senha");
 
-        AuthenticateUseCase employeeUseCase = MakeAuthenticateEmployeeUseCase.Create();
-        Employee employee = employeeUseCase.Execute(authEmployee);
+        try
+        {
+          AuthenticateEmployee authenticateEmployeeRequest = new(enroll, password);
 
-        return employee;
+          AuthenticateUseCase employeeUseCase = MakeAuthenticateEmployeeUseCase.Create();
+          Employee employee = employeeUseCase.Execute(authenticateEmployeeRequest);
+
+          Console.Clear();
+          Console.WriteLine("Usuário autenticado com sucesso!");
+
+          return employee;
+        }
+        catch (Exception e)
+        {
+          throw new Exception("Erro no sistema!", e);
+        }
       }
     }
 }

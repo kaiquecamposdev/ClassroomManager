@@ -1,8 +1,4 @@
-﻿using Sharprompt;
-using System.Data;
-
-using ClassroomManager.usecases.factories;
-using ClassroomManager.repositories;
+﻿using ClassroomManager.usecases.factories;
 using ClassroomManager.lib;
 using ClassroomManager.models;
 using ClassroomManager.models.interfaces;
@@ -10,31 +6,50 @@ using ClassroomManager.usecases;
 
 namespace ClassroomManager.promptio.controllers.employees
 {
-  public class Register
+  public class RegisterEmployee
   {
-    private readonly SharpromptProvider _inputProvider = new();
+    private readonly SharpromptProvider _prompt = new();
 
-    public void Execute()
+    public async Task Execute()
     {
-      string name = _inputProvider.GetStringInput("Digite o nome do funcionário");
-      int enroll = _inputProvider.GetIntInput("Digite o número de matrícula do funcionário");
-      string password = _inputProvider.GetPasswordInput("Digite a senha do funcionário");
-      bool acceptInsertTelephone = _inputProvider.GetBoolInput("Deseja inserir o telefone do funcionário?");
-      int? telephone = acceptInsertTelephone ? _inputProvider.GetIntInput("Digite o telefone do funcionário") : null;
-      string roleString = _inputProvider.Select("Selecione o cargo do funcionário", new[] { "Administrador", "Professor", "Coordenador" });
-      ROLE role = roleString == "Professor" ? ROLE.TEACHER : roleString == "Administrador" ? ROLE.ADMIN : ROLE.COORDINATOR;
+      Console.Clear();
+      Console.WriteLine("Cadastro de Funcionários\n");
+
+      string name = _prompt.GetStringInput("Nome");
+      int enroll = _prompt.GetIntInput("Número de matrícula");
+      string password = _prompt.GetPasswordInput("Senha");
+      ROLE role = _prompt.Select("Selecione o cargo", new[] { "Professor", "Coordenador" }) == "Professor" ? ROLE.TEACHER : ROLE.COORDINATOR;
+
+      bool acceptInsertTelephone = _prompt.GetBoolInput("Deseja inserir o telefone do funcionário?");
+      int? telephone = acceptInsertTelephone ? _prompt.GetIntInput("Telefone") : null;
+
+      string options = _prompt.Select("Deseja finalizar?", new[] { "Finalizar", "Criar Novamente", "Sair" });        
 
       try
       {
+        switch (options)
+        {
+          case "Finalizar":
+            break;
+          case "Criar Novamente":
+            await Execute();
+            break;
+          case "Sair":
+            return;
+        }
+
         Employee employee = new(name, telephone, password, enroll, role);
 
         RegisterEmployeeUseCase employeeUseCase = MakeRegisterEmployeeUseCase.Create();
-        employeeUseCase.Execute(employee);
+        await employeeUseCase.Execute(employee);
 
+        Console.Clear();
         Console.WriteLine("Usuário cadastrado com sucesso!");
+
+        return;
       } catch (Exception e)
       {
-        throw new Exception("Funcionário não cadastrado!", e);
+        throw new Exception("Erro no sistema!", e);
       }
     }
   }

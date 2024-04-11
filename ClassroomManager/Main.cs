@@ -1,28 +1,64 @@
 ﻿using ClassroomManager.lib;
-using ClassroomManager.promptio.controllers.employees;
+using ClassroomManager.models;
+using ClassroomManager.models.interfaces;
+using Sharprompt;
+using System.Runtime.InteropServices;
 
-namespace ClassroomManager 
+namespace ClassroomManager
 {
   class Program
   {
+    private readonly SharpromptProvider prompt = new();
+    private readonly Plugins plugins = new();
+
     static void Main(string[] args)
     {
-      SharpromptProvider _inputProvider = new();
+      new Program().HandleUserSelection();
+    }
 
-      Console.WriteLine("Bem-vindo ao Classroom Manager!\b");
+    private void HandleUserSelection()
+    {
+      Console.Clear();
+      Console.WriteLine("Bem-vindo ao Classroom Manager do Colégio Vencer Sempre!\n");
 
-      bool acceptRegister = _inputProvider.GetBoolInput("Já possui cadastro?");
+      string options = prompt.Select("Selecione uma opção", new[] { "Iniciar Sessão", "Cadastro", "Sair" });
 
-      if (acceptRegister)
+      switch (options)
       {
-        Authenticate pluginAuthenticate = new();
-        pluginAuthenticate.Execute();
+        case "Iniciar Sessão":
+          Employee employee = plugins.AuthenticateEmployee();
+
+          ShowMenu(employee);
+          break;
+        case "Cadastro":
+          RegisterEmployee();
+          break;
+        case "Sair":
+          string option;
+          do
+          {
+            option = prompt.Select("Tem certeza que deseja sair?", new[] { "Sim", "Não" });
+          } while (option != "Sim" && option != "Não");
+
+          if (option == "Sim")
+          {
+            Console.WriteLine("Até mais!");
+            return;
+          }
+          break;
       }
-      else
-      {
-        Register pluginRegister = new();
-        pluginRegister.Execute();
-      }
+      HandleUserSelection();
+    }
+    private void RegisterEmployee()
+    {
+      plugins.RegisterEmployee();
+
+      HandleUserSelection();
+    }
+    private static void ShowMenu(Employee employee)
+    {
+      Menu menu = new(employee);
+      menu.ShowMenu();
     }
   }
 }

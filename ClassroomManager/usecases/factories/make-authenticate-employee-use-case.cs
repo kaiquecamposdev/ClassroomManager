@@ -1,4 +1,5 @@
 ﻿using ClassroomManager.repositories.inMemory;
+using ClassroomManager.repositories.json;
 
 namespace ClassroomManager.usecases.factories
 {
@@ -6,7 +7,7 @@ namespace ClassroomManager.usecases.factories
   {
     public static AuthenticateUseCase Create()
     {
-      InMemoryEmployeesRepository employeesRepository = new();
+      JsonEmployeesRepository employeesRepository = new();
       AuthenticateUseCase useCase = new(employeesRepository);
 
       return useCase;

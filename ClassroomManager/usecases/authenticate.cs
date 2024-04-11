@@ -2,6 +2,7 @@ using ClassroomManager.lib;
 using ClassroomManager.models;
 using ClassroomManager.models.interfaces;
 using ClassroomManager.repositories;
+using ClassroomManager.repositories.json;
 
 namespace ClassroomManager.usecases
 {
@@ -12,7 +13,8 @@ namespace ClassroomManager.usecases
 
     public Employee Execute(IAuthenticateEmployee data)
     {
-      Employee employee = _employeesRepository.FindByEnroll(data.Enroll) ?? throw new Exception("Funcionário não existe!");
+      Employee employee = _employeesRepository.FindByEnroll(data.Enroll);
+
       bool passwordMatch = _bcryptProvider.VerifyPassword(data.Password, employee.Password);
 
       if (passwordMatch == false)
@@ -20,7 +22,7 @@ namespace ClassroomManager.usecases
         throw new Exception("Credenciais inválidas!");
       }
 
-      return employee;
+      return employee ?? throw new Exception("Funcionário não existe!");
     }
   }
 }

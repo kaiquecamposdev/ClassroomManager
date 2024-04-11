@@ -17,9 +17,9 @@ namespace ClassroomManager.repositories.inMemory
         };
     }
 
-    public Employee Create(Employee employee)
+    public async Task<Employee> Create(Employee employee)
     {
-      items.Add(employee ?? throw new Exception("Funcionário não criado!"));
+      items.Add(employee);
 
       return employee;
     }
@@ -30,12 +30,12 @@ namespace ClassroomManager.repositories.inMemory
 
     public Employee FindByEnroll(int enroll)
     {
-      Employee employee = items.Find((employee) => employee.Enroll == enroll) ?? throw new Exception("Funcionário não encontrado!"); ;
+      Employee employee = items.Find((employee) => employee.Enroll == enroll);
 
       return employee;
     }
 
-    public void Remove(string id)
+    public async Task Remove(string id)
     {
       throw new NotImplementedException();
     }
