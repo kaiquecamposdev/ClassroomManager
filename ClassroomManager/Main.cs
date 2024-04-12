@@ -1,8 +1,7 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.models;
-using ClassroomManager.models.interfaces;
-using Sharprompt;
-using System.Runtime.InteropServices;
+using ClassroomManager.promptio.controllers.employees;
+using ClassroomManager.utils;
 
 namespace ClassroomManager
 {
@@ -26,34 +25,41 @@ namespace ClassroomManager
       switch (options)
       {
         case "Iniciar Sessão":
-          Employee employee = plugins.AuthenticateEmployee();
+          Employee employee = Authenticate();
+
+          Console.Clear();
+          Console.WriteLine("Usuário autenticado com sucesso!");
+          Task.Delay(1000).Wait();
 
           ShowMenu(employee);
           break;
         case "Cadastro":
-          RegisterEmployee();
+          Register();
+
+          Console.Clear();
+          Console.WriteLine("Usuário cadastrado com sucesso!");
+          Task.Delay(1000).Wait();
           break;
         case "Sair":
-          string option;
-          do
-          {
-            option = prompt.Select("Tem certeza que deseja sair?", new[] { "Sim", "Não" });
-          } while (option != "Sim" && option != "Não");
+          Exit exit = new();
 
-          if (option == "Sim")
-          {
-            Console.WriteLine("Até mais!");
-            return;
-          }
+          exit.Execute();
           break;
       }
       HandleUserSelection();
     }
-    private void RegisterEmployee()
+    private void Register()
     {
-      plugins.RegisterEmployee();
+      plugins.Register();
 
       HandleUserSelection();
+    }
+
+    private Employee Authenticate()
+    {
+      Employee employee = plugins.AuthenticateEmployee();
+
+      return employee;
     }
     private static void ShowMenu(Employee employee)
     {

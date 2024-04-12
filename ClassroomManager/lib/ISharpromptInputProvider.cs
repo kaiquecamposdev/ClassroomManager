@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ClassroomManager.lib.interfaces
+﻿namespace ClassroomManager.lib
 {
   internal interface ISharpromptInputProvider
   {
@@ -9,5 +7,6 @@ namespace ClassroomManager.lib.interfaces
     string GetPasswordInput(string message);
     bool GetBoolInput(string message);
     string Select(string message, string[] options);
+    IEnumerable<string> MultiSelect(string message, string[] options, int pageSize);
   }
 }

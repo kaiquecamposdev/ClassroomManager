@@ -1,4 +1,4 @@
-﻿namespace ClassroomManager.models.interfaces
+﻿namespace ClassroomManager.models
 {
   public interface IAuthenticateEmployee
   {

@@ -2,12 +2,12 @@
 
 namespace ClassroomManager.usecases.factories
 {
-  public static class MakeAuthenticateEmployeeUseCase
+  public class MakeRegisterUseCase
   {
-    public static AuthenticateUseCase Create()
+    public static RegisterUseCase Create()
     {
       JsonEmployeesRepository employeesRepository = new();
-      AuthenticateUseCase useCase = new(employeesRepository);
+      RegisterUseCase useCase = new(employeesRepository);
 
       return useCase;
     }

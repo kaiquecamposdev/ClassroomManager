@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ClassroomManager": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

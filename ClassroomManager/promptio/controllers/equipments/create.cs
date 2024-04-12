@@ -1,8 +1,7 @@
-﻿using ClassroomManager.usecases.factories;
-using ClassroomManager.lib;
+﻿using ClassroomManager.lib;
 using ClassroomManager.models;
-using ClassroomManager.models.interfaces;
 using ClassroomManager.usecases;
+using ClassroomManager.usecases.factories;
 
 namespace ClassroomManager.promptio.controllers.equipments
 {
@@ -10,18 +9,18 @@ namespace ClassroomManager.promptio.controllers.equipments
   {
     private readonly SharpromptProvider _prompt = new();
 
-    public async Task Execute()
+    public void Execute()
     {
       Console.Clear();
       Console.WriteLine("Criação de Equipamentos\n");
 
-      string name = _prompt.GetStringInput("Nome do equipamento");
-      string model = _prompt.GetStringInput("Modelo do equipamento");
-      string brand = _prompt.GetStringInput("Marca do equipamento");
-      string? description = _prompt.GetStringInput("Descrição do equipamento");
-      int quantity = _prompt.GetIntInput("Quantidade do equipamento");
+      string name = _prompt.GetStringInput("Nome");
+      string model = _prompt.GetStringInput("Modelo");
+      string brand = _prompt.GetStringInput("Marca");
+      string? description = _prompt.GetStringInput("Descrição");
+      int quantity = _prompt.GetIntInput("Quantidade");
 
-      string statusString = _prompt.Select("Status do equipamento", new[] { "Disponível", "Reservado", "Emprestado" });
+      string statusString = _prompt.Select("Status", new[] { "Disponível", "Reservado", "Emprestado" });
       STATUS status = STATUS.AVAILABLE;
 
       switch (statusString)
@@ -37,27 +36,26 @@ namespace ClassroomManager.promptio.controllers.equipments
           break;
       }
 
-      string options = _prompt.Select("Deseja finalizar?", new[] { "Finalizar", "Criar Novamente", "Sair" });
+      string options = _prompt.Select("Deseja finalizar?", new[] { "Sim", "Não" });
 
       try
       {
         switch (options)
         {
-          case "Finalizar":
+          case "Sim":
             break;
-          case "Criar Novamente":
-            await Execute();
+          case "Não":
+            Execute();
             break;
-          case "Sair":
-            return;
         }
         Equipment equipment = new(name, model, brand, description, quantity, status);
 
         CreateEquipmentUseCase equipmentUseCase = MakeCreateEquipmentUseCase.Create();
-        await equipmentUseCase.Execute(equipment);
+        equipmentUseCase.Execute(equipment);
 
         Console.Clear();
         Console.WriteLine("Equipamento criado com sucesso!");
+        Task.Delay(1000).Wait();
 
         return;
       }

@@ -1,6 +1,4 @@
-﻿using ClassroomManager.lib.interfaces;
-
-namespace ClassroomManager.lib
+﻿namespace ClassroomManager.lib
 {
   public class SharpromptProvider : ISharpromptInputProvider
   {
@@ -27,6 +25,11 @@ namespace ClassroomManager.lib
     public string Select(string message, string[] options)
     {
       return Sharprompt.Prompt.Select(message, options);
+    }
+
+    public IEnumerable<string> MultiSelect(string message, string[] options, int pageSize)
+    {
+      return Sharprompt.Prompt.MultiSelect(message, options, pageSize);
     }
   }
 }

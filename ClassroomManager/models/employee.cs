@@ -1,7 +1,4 @@
-﻿using ClassroomManager.models.interfaces;
-using System.ComponentModel.DataAnnotations;
-
-namespace ClassroomManager.models
+﻿namespace ClassroomManager.models
 {
   public class Employee(string name, int? telephone, string password, int enroll, ROLE role) : IEmployee
   {

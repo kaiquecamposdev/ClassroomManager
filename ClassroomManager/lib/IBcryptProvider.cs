@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ClassroomManager.lib.interfaces
+﻿namespace ClassroomManager.lib
 {
   internal interface IBcryptProvider
   {

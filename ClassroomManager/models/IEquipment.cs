@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection;
-using System.Xml.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ClassroomManager.models.interfaces
+namespace ClassroomManager.models
 {
   public enum STATUS
   {

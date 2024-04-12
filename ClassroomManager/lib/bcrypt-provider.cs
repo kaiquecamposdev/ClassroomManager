@@ -1,6 +1,4 @@
-﻿using ClassroomManager.lib.interfaces;
-
-namespace ClassroomManager.lib
+﻿namespace ClassroomManager.lib
 {
   public class BcryptProvider : IBcryptProvider
   {

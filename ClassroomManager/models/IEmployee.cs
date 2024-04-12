@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ClassroomManager.models.interfaces
+namespace ClassroomManager.models
 {
   public enum ROLE
   {

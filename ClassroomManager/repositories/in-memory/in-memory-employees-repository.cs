@@ -1,7 +1,5 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.models;
-using ClassroomManager.models.interfaces;
-using Sharprompt;
 
 namespace ClassroomManager.repositories.inMemory
 {
@@ -17,7 +15,7 @@ namespace ClassroomManager.repositories.inMemory
         };
     }
 
-    public async Task<Employee> Create(Employee employee)
+    public Employee Create(Employee employee)
     {
       items.Add(employee);
 
@@ -35,7 +33,7 @@ namespace ClassroomManager.repositories.inMemory
       return employee;
     }
 
-    public async Task Remove(string id)
+    public void Remove(string id)
     {
       throw new NotImplementedException();
     }

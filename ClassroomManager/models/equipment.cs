@@ -1,7 +1,4 @@
-﻿using ClassroomManager.models.interfaces;
-using System.ComponentModel.DataAnnotations;
-
-namespace ClassroomManager.models
+﻿namespace ClassroomManager.models
 {
   public class Equipment(string name, string model, string brand, string? description, int quantity, STATUS status) : IEquipment
   {

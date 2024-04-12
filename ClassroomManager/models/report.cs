@@ -1,6 +1,4 @@
-﻿using ClassroomManager.models;
-
-namespace ClassroomManager.models
+﻿namespace ClassroomManager.models
 {
   public class Report(int id, string description, DateTime date, int employeeId, Employee employee, int equipmentId, Equipment equipment)
   {

@@ -10,8 +10,9 @@ namespace ClassroomManager.repositories
   }
   public interface IEquipmentsRepository
   {
-    public Task<Equipment> Create(Equipment employee);
-    public Task Remove(string id);
+    public Equipment Create(Equipment employee);
+    public void Remove(string id);
+    public List<Equipment> GetAll();
     public Equipment FindById(string id);
     public Equipment FindByModel(string model);
     public Equipment FindByBrand(string brand);

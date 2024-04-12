@@ -4,8 +4,8 @@ namespace ClassroomManager.repositories
 {
   public interface IEmployeesRepository
   {
-    public Task<Employee> Create(Employee employee);
-    public Task Remove(string id);
+    public Employee Create(Employee employee);
+    public void Remove(string id);
     public Employee FindById(string id);
     public Employee FindByEnroll(int enroll);
   }

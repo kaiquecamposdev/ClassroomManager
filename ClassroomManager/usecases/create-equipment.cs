@@ -1,6 +1,5 @@
-﻿using ClassroomManager.lib;
+﻿using ClassroomManager.models;
 using ClassroomManager.repositories;
-using ClassroomManager.models;
 
 namespace ClassroomManager.usecases
 {
@@ -8,16 +7,14 @@ namespace ClassroomManager.usecases
   {
     private readonly IEquipmentsRepository _equipmentsRepository = equipmentsRepository;
 
-    public async Task<Equipment> Execute(Equipment data)
+    public IEquipmentsRepository Get_equipmentsRepository()
     {
-      Equipment equipmentWithSameModel = _equipmentsRepository.FindByModel(data.Model);
+      return _equipmentsRepository;
+    }
 
-      if (equipmentWithSameModel != null)
-      {
-        throw new Exception("Equipamento já existe!");
-      }
-
-      Equipment equipment = await _equipmentsRepository.Create(new(data.Name, data.Model, data.Brand, data.Description, data.Quantity, data.Status));
+    public Equipment Execute(Equipment data)
+    {
+      Equipment equipment = _equipmentsRepository.Create(new(data.Name, data.Model, data.Brand, data.Description, data.Quantity, data.Status));
 
       return equipment;
     }

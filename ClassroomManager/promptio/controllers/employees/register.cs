@@ -1,16 +1,15 @@
-﻿using ClassroomManager.usecases.factories;
-using ClassroomManager.lib;
+﻿using ClassroomManager.lib;
 using ClassroomManager.models;
-using ClassroomManager.models.interfaces;
 using ClassroomManager.usecases;
+using ClassroomManager.usecases.factories;
 
 namespace ClassroomManager.promptio.controllers.employees
 {
-  public class RegisterEmployee
+  public class Register
   {
     private readonly SharpromptProvider _prompt = new();
 
-    public async Task Execute()
+    public void Execute()
     {
       Console.Clear();
       Console.WriteLine("Cadastro de Funcionários\n");
@@ -23,31 +22,31 @@ namespace ClassroomManager.promptio.controllers.employees
       bool acceptInsertTelephone = _prompt.GetBoolInput("Deseja inserir o telefone do funcionário?");
       int? telephone = acceptInsertTelephone ? _prompt.GetIntInput("Telefone") : null;
 
-      string options = _prompt.Select("Deseja finalizar?", new[] { "Finalizar", "Criar Novamente", "Sair" });        
+      string options = _prompt.Select("Tem certeza?", new[] { "Sim", "Não" });
+
+      switch (options)
+      {
+        case "Sim":
+          break;
+        case "Não":
+          Execute();
+          break;
+      }
 
       try
       {
-        switch (options)
-        {
-          case "Finalizar":
-            break;
-          case "Criar Novamente":
-            await Execute();
-            break;
-          case "Sair":
-            return;
-        }
-
         Employee employee = new(name, telephone, password, enroll, role);
 
-        RegisterEmployeeUseCase employeeUseCase = MakeRegisterEmployeeUseCase.Create();
-        await employeeUseCase.Execute(employee);
+        RegisterUseCase employeeUseCase = MakeRegisterUseCase.Create();
+        employeeUseCase.Execute(employee);
 
         Console.Clear();
-        Console.WriteLine("Usuário cadastrado com sucesso!");
+        Console.WriteLine("Funcionário cadastrado com sucesso!");
+        Task.Delay(1000).Wait();
 
         return;
-      } catch (Exception e)
+      }
+      catch (Exception e)
       {
         throw new Exception("Erro no sistema!", e);
       }

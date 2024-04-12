@@ -1,9 +1,6 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.models;
-using ClassroomManager.models.interfaces;
 using Newtonsoft.Json;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace ClassroomManager.repositories.json
 {
@@ -19,12 +16,13 @@ namespace ClassroomManager.repositories.json
       {
         new Employee("Admin", 123456789, password: _bcryptProvider.HashPassword("admin"), 123456, ROLE.ADMIN)
       };
+      LoadEmployeesFromFile().Wait();
     }
 
-    public async Task<Employee> Create(Employee employee)
+    public Employee Create(Employee employee)
     {
       items.Add(employee);
-      await SaveEmployeesToFile(items);
+      _ = SaveEmployeesToFile(items);
 
       return employee;
     }
@@ -39,12 +37,12 @@ namespace ClassroomManager.repositories.json
       return items.Find(employee => employee.Enroll == enroll);
     }
 
-    public async Task Remove(string id)
+    public void Remove(string id)
     {
       int employeeIndexForRemove = items.FindIndex(employee => employee.Id == id);
 
       items.Remove(items.ElementAt(employeeIndexForRemove));
-      await SaveEmployeesToFile(items);
+      _ = SaveEmployeesToFile(items);
 
       return;
     }

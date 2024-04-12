@@ -1,6 +1,6 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.models;
-using ClassroomManager.models.interfaces;
+using ClassroomManager.utils;
 
 public class Menu : IMenu
 {
@@ -38,7 +38,9 @@ public class Menu : IMenu
           }
           break;
         case MenuOption.Exit:
-          Console.WriteLine("Até mais!");
+          Exit exit = new();
+
+          exit.Execute();
           return;
       }
     }
@@ -49,11 +51,11 @@ public class Menu : IMenu
     Console.Clear();
     Console.WriteLine($"Bem-vindo, {_employee.Name}!\n");
 
-    string selectedOptionString = _prompt.Select("Selecione uma das opções", new[] { 
-      "Consultar Equipamentos", 
-      "Solicitar Equipamento", 
-      "Criar Equipamento", 
-      "Sair" 
+    string selectedOptionString = _prompt.Select("Selecione uma das opções", new[] {
+      "Consultar Equipamentos",
+      "Solicitar Equipamento",
+      "Criar Equipamento",
+      "Sair"
     });
 
     MenuOption selectedOption;
@@ -71,6 +73,19 @@ public class Menu : IMenu
         break;
       case "Sair":
         selectedOption = MenuOption.Exit;
+
+        string option;
+        do
+        {
+          option = _prompt.Select("Tem certeza que deseja sair?", new[] { "Sim", "Não" });
+        } while (option != "Sim" && option != "Não");
+
+        if (option == "Sim")
+        {
+          Console.WriteLine("Até mais!");
+          return MenuOption.Exit;
+        }
+
         break;
       default:
         selectedOption = MenuOption.Exit;
@@ -82,7 +97,7 @@ public class Menu : IMenu
 
   private void ConsultEquipment()
   {
-    // Implementar a lógica para consultar equipamentos
+    plugins.ConsultEquipment();
   }
 
   private void RequestEquipment()

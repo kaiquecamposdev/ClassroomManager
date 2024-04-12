@@ -1,15 +1,15 @@
 ﻿using ClassroomManager.lib;
-using ClassroomManager.repositories;
 using ClassroomManager.models;
+using ClassroomManager.repositories;
 
 namespace ClassroomManager.usecases
 {
-  public class RegisterEmployeeUseCase(IEmployeesRepository employeesRepository)
+  public class RegisterUseCase(IEmployeesRepository employeesRepository)
   {
     private readonly IEmployeesRepository _employeesRepository = employeesRepository;
     private readonly BcryptProvider _bcryptProvider = new();
 
-    public async Task<Employee> Execute(Employee data)
+    public Employee Execute(Employee data)
     {
       string password_hash = _bcryptProvider.HashPassword(data.Password);
 
@@ -17,10 +17,10 @@ namespace ClassroomManager.usecases
 
       if (employeeWithSameEnroll != null)
       {
-        throw new Exception("Funcionário já existe!");
+        throw new Exception("Funcionário já existe.");
       }
 
-      Employee employee = await _employeesRepository.Create(new(data.Name, data.Telephone, password_hash, data.Enroll, data.Role));
+      Employee employee = _employeesRepository.Create(new(data.Name, data.Telephone, password: password_hash, data.Enroll, data.Role));
 
       return employee;
     }

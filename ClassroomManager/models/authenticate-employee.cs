@@ -1,6 +1,4 @@
-﻿using ClassroomManager.models.interfaces;
-
-namespace ClassroomManager.models
+﻿namespace ClassroomManager.models
 {
   public class AuthenticateEmployee(int enroll, string password) : IAuthenticateEmployee
   {

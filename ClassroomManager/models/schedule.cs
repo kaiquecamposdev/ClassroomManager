@@ -1,6 +1,4 @@
-﻿using ClassroomManager.models;
-
-namespace ClassroomManager.models
+﻿namespace ClassroomManager.models
 {
   public class Schedule(int id, string description, DateTime dateStart, DateTime dateEnd, int employeeId, Employee employee, int equipmentId, Equipment equipment)
   {

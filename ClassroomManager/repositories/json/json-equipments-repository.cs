@@ -5,48 +5,67 @@ namespace ClassroomManager.repositories.json
 {
   public class JsonEquipmentsRepository : IEquipmentsRepository
   {
-    private readonly List<Equipment> items = [];
+    private List<Equipment> items = [];
     private readonly string _filePath = "equipments.json";
 
     public JsonEquipmentsRepository()
     {
-      LoadEquipmentsFromFile();
+      _ = LoadEquipmentsFromFile();
     }
 
-    public async Task<Equipment> Create(Equipment equipment)
+    public Equipment Create(Equipment equipment)
     {
+      LoadEquipmentsFromFile().Wait();
+
       items.Add(equipment);
-      await SaveEquipmentsToFile(items);
+      _ = SaveEquipmentsToFile(items);
 
       return equipment;
     }
 
+    public List<Equipment> GetAll()
+    {
+      LoadEquipmentsFromFile().Wait();
+
+      return items;
+    }
+
     public Equipment FindById(string id)
     {
+      LoadEquipmentsFromFile().Wait();
+
       return items.Find(equipment => equipment.Id == id);
     }
 
     public Equipment FindByBrand(string brand)
     {
+      LoadEquipmentsFromFile().Wait();
+
       return items.Find(equipment => equipment.Brand == brand);
     }
 
     public Equipment FindByModel(string model)
     {
+      LoadEquipmentsFromFile().Wait();
+
       return items.Find(equipment => equipment.Model == model);
     }
 
     public Equipment FindByStatus(STATUS status)
     {
+      LoadEquipmentsFromFile().Wait();
+
       return items.Find(equipment => equipment.Status.HasFlag(status));
     }
 
-    public async Task Remove(string id)
+    public void Remove(string id)
     {
+      LoadEquipmentsFromFile().Wait();
+
       int equipmentIndexForRemove = items.FindIndex(equipment => equipment.Id == id);
 
       items.Remove(items.ElementAt(equipmentIndexForRemove));
-      await SaveEquipmentsToFile(items);
+      _ = SaveEquipmentsToFile(items);
 
       return;
     }
