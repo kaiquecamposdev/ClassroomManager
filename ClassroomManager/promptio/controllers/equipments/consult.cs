@@ -24,7 +24,13 @@ namespace ClassroomManager.promptio.controllers.equipments
 
         Console.WriteLine("Equipamentos:\n");
 
-        var tableOptions = _prompt.Select("Selecione uma das opções", new[] { "Sem ordenação", "Ordernar por Nome", "Ordernar por Marca", "Ordernar por Status", "Voltar" });
+        var tableOptions = _prompt.Select("Selecione uma das opções", new[] { 
+          "Sem ordenação", 
+          "Ordernar por Nome", 
+          "Ordernar por Marca", 
+          "Ordernar por Status", 
+          "Voltar" 
+        });
 
         switch (tableOptions)
         {

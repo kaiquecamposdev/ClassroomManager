@@ -7,11 +7,6 @@ namespace ClassroomManager.usecases
   {
     private readonly IEquipmentsRepository _equipmentsRepository = equipmentsRepository;
 
-    public IEquipmentsRepository Get_equipmentsRepository()
-    {
-      return _equipmentsRepository;
-    }
-
     public Equipment Execute(Equipment data)
     {
       Equipment equipment = _equipmentsRepository.Create(new(data.Name, data.Model, data.Brand, data.Description, data.Quantity, data.Status));

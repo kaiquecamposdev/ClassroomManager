@@ -26,7 +26,7 @@ namespace ClassroomManager.promptio.controllers.employees
 
         Console.Clear();
         Console.WriteLine("Usuário autenticado com sucesso!");
-        Task.Delay(1000).Wait();
+        Task.Delay(500).Wait();
 
         return employee;
       }

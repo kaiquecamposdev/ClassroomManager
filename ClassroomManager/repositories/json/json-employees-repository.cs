@@ -1,10 +1,11 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.models;
+using ClassroomManager.models.interfaces;
 using Newtonsoft.Json;
 
 namespace ClassroomManager.repositories.json
 {
-  public class JsonEmployeesRepository : IEmployeesRepository
+    public class JsonEmployeesRepository : IEmployeesRepository
   {
     private List<Employee> items;
     private readonly BcryptProvider _bcryptProvider = new();

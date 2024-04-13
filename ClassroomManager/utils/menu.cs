@@ -1,6 +1,8 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.models;
+using ClassroomManager.models.interfaces;
 using ClassroomManager.utils;
+using ClassroomManager.utils.interfaces;
 
 public class Menu : IMenu
 {
@@ -28,19 +30,24 @@ public class Menu : IMenu
           RequestEquipment();
           break;
         case MenuOption.CreateEquipment:
-          if (_employee.Role == ROLE.ADMIN)
+          CreateEquipment();
+          break;
+        case MenuOption.Exit:
+          string exitOption;
+          do
           {
-            CreateEquipment();
+            exitOption = _prompt.Select("Tem certeza que deseja sair?", new[] { "Sim", "Não" });
+          } while (exitOption != "Sim" && exitOption != "Não");
+
+          if (exitOption == "Sim")
+          {
+            Console.WriteLine("Até mais!");
+            return;
           }
           else
           {
-            Console.WriteLine("Você não tem acesso a essa opção.");
+            ShowMenu();
           }
-          break;
-        case MenuOption.Exit:
-          Exit exit = new();
-
-          exit.Execute("Tem certeza que deseja sair?");
           return;
       }
     }
@@ -51,12 +58,23 @@ public class Menu : IMenu
     Console.Clear();
     Console.WriteLine($"Bem-vindo, {_employee.Name}!\n");
 
-    string selectedOptionString = _prompt.Select("Selecione uma das opções", new[] {
+    string[] options = [
       "Consultar Equipamentos",
       "Solicitar Equipamento",
-      "Criar Equipamento",
       "Sair"
-    });
+    ];
+
+    if (_employee.Role.Equals(ROLE.ADMIN))
+    {
+      options = [
+        "Consultar Equipamentos",
+        "Solicitar Equipamento",
+        "Criar Equipamento",
+        "Sair"
+      ];
+    }
+
+    string selectedOptionString = _prompt.Select("Selecione uma das opções", options);
 
     MenuOption selectedOption;
 

@@ -1,6 +1,8 @@
-﻿namespace ClassroomManager.models
+﻿using ClassroomManager.models.interfaces;
+
+namespace ClassroomManager.models
 {
-  public class Equipment(string name, string model, string brand, string? description, int quantity, STATUS status) : IEquipment
+    public class Equipment(string name, string model, string brand, string? description, int quantity, STATUS status) : IEquipment
   {
     public string Id { get; private set; } = Guid.NewGuid().ToString();
     public string Name { get; set; } = name;

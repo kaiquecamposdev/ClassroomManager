@@ -1,11 +1,12 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.models;
+using ClassroomManager.models.interfaces;
 using ClassroomManager.usecases;
 using ClassroomManager.usecases.factories;
 
 namespace ClassroomManager.promptio.controllers.employees
 {
-  public class Register
+    public class Register
   {
     private readonly SharpromptProvider _prompt = new();
 
@@ -42,7 +43,7 @@ namespace ClassroomManager.promptio.controllers.employees
 
         Console.Clear();
         Console.WriteLine("Funcionário cadastrado com sucesso!");
-        Task.Delay(1000).Wait();
+        Task.Delay(500).Wait();
 
         return;
       }

@@ -1,13 +1,12 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.models;
-using ClassroomManager.promptio.controllers.employees;
 using ClassroomManager.utils;
 
 namespace ClassroomManager
 {
   class Program
   {
-    private readonly SharpromptProvider prompt = new();
+    private readonly SharpromptProvider _prompt = new();
     private readonly Plugins plugins = new();
 
     static void Main(string[] args)
@@ -20,7 +19,7 @@ namespace ClassroomManager
       Console.Clear();
       Console.WriteLine("Bem-vindo ao Classroom Manager do Colégio Vencer Sempre!\n");
 
-      string options = prompt.Select("Selecione uma opção", new[] { "Iniciar Sessão", "Cadastro", "Sair" });
+      string options = _prompt.Select("Selecione uma opção", new[] { "Iniciar Sessão", "Cadastro", "Sair" });
 
       switch (options)
       {
@@ -41,9 +40,21 @@ namespace ClassroomManager
           Task.Delay(500).Wait();
           break;
         case "Sair":
-          Exit exit = new();
+          string exitOption;
+          do
+          {
+            exitOption = _prompt.Select("Tem certeza que deseja sair?", new[] { "Sim", "Não" });
+          } while (exitOption != "Sim" && exitOption != "Não");
 
-          exit.Execute("Tem certeza que deseja sair?");
+          if (exitOption == "Sim")
+          {
+            Console.WriteLine("Até mais!");
+            return;
+          }
+          else
+          {
+            HandleUserSelection();
+          }
           return;
       }
       HandleUserSelection();

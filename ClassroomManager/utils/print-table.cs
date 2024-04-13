@@ -1,4 +1,5 @@
 ﻿using ClassroomManager.models;
+using ClassroomManager.models.interfaces;
 using ConsoleTables;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ClassroomManager.utils
 {
-  public class PrintTable
+    public class PrintTable
   {
     public void Execute(ConsoleTable table, List<Equipment> equipments)
     {

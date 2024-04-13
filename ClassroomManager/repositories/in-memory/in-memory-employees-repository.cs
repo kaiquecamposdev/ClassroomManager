@@ -1,9 +1,10 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.models;
+using ClassroomManager.models.interfaces;
 
 namespace ClassroomManager.repositories.inMemory
 {
-  public class InMemoryEmployeesRepository : IEmployeesRepository
+    public class InMemoryEmployeesRepository : IEmployeesRepository
   {
     private readonly List<Employee> items;
     private readonly BcryptProvider _bcryptProvider = new();

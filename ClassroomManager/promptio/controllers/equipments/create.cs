@@ -1,5 +1,6 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.models;
+using ClassroomManager.models.interfaces;
 using ClassroomManager.usecases;
 using ClassroomManager.usecases.factories;
 
@@ -55,7 +56,7 @@ namespace ClassroomManager.promptio.controllers.equipments
 
         Console.Clear();
         Console.WriteLine("Equipamento criado com sucesso!");
-        Task.Delay(1000).Wait();
+        Task.Delay(500).Wait();
 
         return;
       }

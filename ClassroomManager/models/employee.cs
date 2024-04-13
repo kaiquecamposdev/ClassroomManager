@@ -1,6 +1,8 @@
-﻿namespace ClassroomManager.models
+﻿using ClassroomManager.models.interfaces;
+
+namespace ClassroomManager.models
 {
-  public class Employee(string name, int? telephone, string password, int enroll, ROLE role) : IEmployee
+    public class Employee(string name, int? telephone, string password, int enroll, ROLE role) : IEmployee
   {
     public string Id { get; private set; } = Guid.NewGuid().ToString();
     public string Name { get; set; } = name;

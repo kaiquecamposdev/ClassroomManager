@@ -1,10 +1,11 @@
 using ClassroomManager.lib;
 using ClassroomManager.models;
+using ClassroomManager.models.interfaces;
 using ClassroomManager.repositories;
 
 namespace ClassroomManager.usecases
 {
-  public class AuthenticateUseCase(IEmployeesRepository employeesRepository)
+    public class AuthenticateUseCase(IEmployeesRepository employeesRepository)
   {
     public readonly IEmployeesRepository _employeesRepository = employeesRepository;
     public readonly BcryptProvider _bcryptProvider = new();
