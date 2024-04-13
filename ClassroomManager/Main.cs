@@ -29,7 +29,7 @@ namespace ClassroomManager
 
           Console.Clear();
           Console.WriteLine("Usuário autenticado com sucesso!");
-          Task.Delay(1000).Wait();
+          Task.Delay(500).Wait();
 
           ShowMenu(employee);
           break;
@@ -38,13 +38,13 @@ namespace ClassroomManager
 
           Console.Clear();
           Console.WriteLine("Usuário cadastrado com sucesso!");
-          Task.Delay(1000).Wait();
+          Task.Delay(500).Wait();
           break;
         case "Sair":
           Exit exit = new();
 
-          exit.Execute();
-          break;
+          exit.Execute("Tem certeza que deseja sair?");
+          return;
       }
       HandleUserSelection();
     }
@@ -64,6 +64,7 @@ namespace ClassroomManager
     private static void ShowMenu(Employee employee)
     {
       Menu menu = new(employee);
+
       menu.ShowMenu();
     }
   }

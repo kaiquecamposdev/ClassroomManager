@@ -12,10 +12,6 @@ namespace ClassroomManager.repositories.json
 
     public JsonEmployeesRepository()
     {
-      items = new List<Employee>()
-      {
-        new Employee("Admin", 123456789, password: _bcryptProvider.HashPassword("admin"), 123456, ROLE.ADMIN)
-      };
       LoadEmployeesFromFile().Wait();
     }
 
@@ -56,7 +52,10 @@ namespace ClassroomManager.repositories.json
       }
       else
       {
-        items = new List<Employee>();
+        items = new List<Employee>()
+        {
+          new("Admin", 123456789, password: _bcryptProvider.HashPassword("admin"), 123456, ROLE.ADMIN)
+        };
       }
     }
 

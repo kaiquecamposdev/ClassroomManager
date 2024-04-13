@@ -2,14 +2,17 @@
 using ClassroomManager.models;
 using ClassroomManager.usecases;
 using ClassroomManager.usecases.factories;
+using ClassroomManager.utils;
 using ConsoleTables;
+using System.Diagnostics;
 
 namespace ClassroomManager.promptio.controllers.equipments
 {
   public class ConsultEquipment
   {
+    private readonly SharpromptProvider _prompt = new();
 
-    public List<Equipment> Execute()
+    public void Execute()
     {
       Console.Clear();
       Console.WriteLine("Consultor de Equipamentos\n");
@@ -21,17 +24,38 @@ namespace ClassroomManager.promptio.controllers.equipments
 
         Console.WriteLine("Equipamentos:\n");
 
-        ConsoleTable table = new("Id", "Nome", "Modelo", "Quantidade", "Marca", "Descrição");
+        var tableOptions = _prompt.Select("Selecione uma das opções", new[] { "Sem ordenação", "Ordernar por Nome", "Ordernar por Marca", "Ordernar por Status", "Voltar" });
 
-        for (int i = 0; i < equipments.Count; i++)
+        switch (tableOptions)
         {
-          Equipment equipment = equipments[i];
-          table.AddRow(equipment.Id, equipment.Name, equipment.Model, equipment.Quantity, equipment.Brand, equipment.Description);
+          case "Sem ordenação":
+            break;
+          case "Ordernar por Nome":
+            equipments = equipments.OrderBy(row => row.Name).ToList();
+            break;
+          case "Ordernar por Marca":
+            equipments = equipments.OrderBy(row => row.Brand).ToList();
+            break;
+          case "Ordernar por Status":
+            equipments = equipments.OrderBy(row => row.Status).ToList();
+            break;
+          case "Voltar":
+            return;
         }
 
-        table.Write();
+        ConsoleTable table = new("Nome", "Modelo", "Marca", "Descrição", "Status");
 
-        return equipments;
+        PrintTable printTable = new();
+        printTable.Execute(table, equipments);
+
+        string lastOption = _prompt.Select("O que deseja fazer", new[] { "Voltar", "Sair" });
+
+        if (lastOption == "Voltar")
+        {
+          Execute();
+        }
+
+        return;
       }
       catch (Exception e)
       {

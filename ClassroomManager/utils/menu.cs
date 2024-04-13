@@ -40,7 +40,7 @@ public class Menu : IMenu
         case MenuOption.Exit:
           Exit exit = new();
 
-          exit.Execute();
+          exit.Execute("Tem certeza que deseja sair?");
           return;
       }
     }
@@ -73,19 +73,6 @@ public class Menu : IMenu
         break;
       case "Sair":
         selectedOption = MenuOption.Exit;
-
-        string option;
-        do
-        {
-          option = _prompt.Select("Tem certeza que deseja sair?", new[] { "Sim", "Não" });
-        } while (option != "Sim" && option != "Não");
-
-        if (option == "Sim")
-        {
-          Console.WriteLine("Até mais!");
-          return MenuOption.Exit;
-        }
-
         break;
       default:
         selectedOption = MenuOption.Exit;

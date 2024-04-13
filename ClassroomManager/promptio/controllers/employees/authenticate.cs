@@ -2,7 +2,6 @@
 using ClassroomManager.models;
 using ClassroomManager.usecases;
 using ClassroomManager.usecases.factories;
-using System.Data;
 
 namespace ClassroomManager.promptio.controllers.employees
 {
