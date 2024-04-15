@@ -8,6 +8,6 @@ namespace ClassroomManager.utils.interfaces
         Employee AuthenticateEmployee();
         void CreateEquipment();
         void ConsultEquipment();
-        void RequestEquipment();
+        void RequestEquipments();
     }
 }

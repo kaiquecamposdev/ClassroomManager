@@ -49,7 +49,7 @@ namespace ClassroomManager.promptio.controllers.equipments
             return;
         }
 
-        ConsoleTable table = new("Nome", "Modelo", "Marca", "Descrição", "Status");
+        ConsoleTable table = new("Nome", "Modelo", "Marca", "Descrição", "Quantidade", "Status");
 
         PrintTable printTable = new();
         printTable.Execute(table, equipments);

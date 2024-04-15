@@ -107,7 +107,7 @@ public class Menu : IMenu
 
   private void RequestEquipment()
   {
-    // Implementar a lógica para solicitar equipamentos
+    plugins.RequestEquipments();
   }
 
   private void CreateEquipment()

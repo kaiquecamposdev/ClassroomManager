@@ -35,7 +35,7 @@ namespace ClassroomManager.utils
             break;
         }
 
-        table.AddRow(equipment.Name, equipment.Model, equipment.Brand, equipment.Description, status);
+        table.AddRow(equipment.Name, equipment.Model, equipment.Brand, equipment.Description, equipment.Quantity, status);
       }
       table.Write();
     }

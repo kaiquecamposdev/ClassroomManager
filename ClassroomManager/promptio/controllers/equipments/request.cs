@@ -20,17 +20,19 @@ namespace ClassroomManager.promptio.controllers.equipments
         RequestEquipmentsUseCase requestEquipmentsUseCase = MakeRequestEquipmentsUseCase.Create();
         List<Equipment> equipments = requestEquipmentsUseCase.Execute();
 
-        string[] equipmentsArray;
+        string[] equipmentsArray = new string[equipments.Count];
 
         for (int i = 0; i < equipments.Count; i++)
         {
           Equipment equipment = equipments[i];
-
-          equipmentsArray
+          equipmentsArray[0] = " Nome=" + equipment.Name + " Marca=" + equipment.Brand + " Modelo=" + equipment.Model + " Id=" + equipment.Id;
         }
 
-        IEnumerable<string> itemsChosenByTheUser = _prompt.MultiSelect("Equipamentos:", , 5);
+        string itemsChosenByTheUser = _prompt.Select("Equipamentos:", equipmentsArray);
 
+        Console.Clear();
+        Console.WriteLine("Equipamento solicitado com sucesso!");
+        Task.Delay(500).Wait();
       }
       catch (Exception e)
       {
