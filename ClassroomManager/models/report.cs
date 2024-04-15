@@ -1,13 +1,10 @@
 ﻿namespace ClassroomManager.models
 {
-  public class Report(int id, string description, DateTime date, int employeeId, Employee employee, int equipmentId, Equipment equipment)
+  public class Report(string employeeId, string equipmentId)
   {
-    public int Id { get; set; } = id;
-    public string Description { get; set; } = description;
-    public DateTime Date { get; set; } = date;
-    public int EmployeeId { get; set; } = employeeId;
-    public Employee Employee { get; set; } = employee;
-    public int EquipmentId { get; set; } = equipmentId;
-    public Equipment Equipment { get; set; } = equipment;
+    public string Id { get; private set; } = Guid.NewGuid().ToString();
+    public string EmployeeId { get; set; } = employeeId;
+    public string EquipmentId { get; set; } = equipmentId;
+    public DateTime CreatedAt { get; private set; } = new();
   }
 }

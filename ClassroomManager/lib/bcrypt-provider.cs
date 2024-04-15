@@ -1,6 +1,8 @@
-﻿namespace ClassroomManager.lib
+﻿using ClassroomManager.lib.interfaces;
+
+namespace ClassroomManager.lib
 {
-  public class BcryptProvider : IBcryptProvider
+    public class BcryptProvider : IBcryptProvider
   {
     public string HashPassword(string password)
     {

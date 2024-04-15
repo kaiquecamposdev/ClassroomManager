@@ -1,5 +1,6 @@
 ﻿using ClassroomManager.models;
 using ClassroomManager.repositories;
+using ClassroomManager.usecases.errors;
 
 namespace ClassroomManager.usecases
 {
@@ -11,9 +12,9 @@ namespace ClassroomManager.usecases
     {
       List<Equipment> equipments = _equipmentsRepository.GetAll();
 
-      if (equipments == null)
+      if (equipments.Count == 0)
       {
-        throw new Exception("Conteúdo não encontrado.");
+        throw new ResourceNotFoundError();
       }
 
       return equipments;

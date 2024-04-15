@@ -1,5 +1,6 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.models;
+using ClassroomManager.promptio.controllers;
 using ClassroomManager.utils;
 
 namespace ClassroomManager
@@ -7,7 +8,6 @@ namespace ClassroomManager
   class Program
   {
     private readonly SharpromptProvider _prompt = new();
-    private readonly Plugins plugins = new();
 
     static void Main(string[] args)
     {
@@ -16,6 +16,8 @@ namespace ClassroomManager
 
     private void HandleUserSelection()
     {
+      EmployeeController employeeController = new();
+
       Console.Clear();
       Console.WriteLine("Bem-vindo ao Classroom Manager do Colégio Vencer Sempre!\n");
 
@@ -24,27 +26,26 @@ namespace ClassroomManager
       switch (options)
       {
         case "Iniciar Sessão":
-          Employee employee = Authenticate();
+          Employee employee = employeeController.Authenticate();
 
-          Console.Clear();
-          Console.WriteLine("Usuário autenticado com sucesso!");
-          Task.Delay(500).Wait();
+          if (employee != null)
+          {
+            Console.Clear();
+            Console.WriteLine("Usuário autenticado com sucesso!");
+            Task.Delay(500).Wait();
 
-          ShowMenu(employee);
+            ShowMenu(employee);
+          }
           break;
         case "Cadastro":
-          Register();
+          employeeController.Register();
 
           Console.Clear();
           Console.WriteLine("Usuário cadastrado com sucesso!");
           Task.Delay(500).Wait();
           break;
         case "Sair":
-          string exitOption;
-          do
-          {
-            exitOption = _prompt.Select("Tem certeza que deseja sair?", new[] { "Sim", "Não" });
-          } while (exitOption != "Sim" && exitOption != "Não");
+          string exitOption = _prompt.Select("Tem certeza que deseja sair?", new[] { "Sim", "Não" });
 
           if (exitOption == "Sim")
           {
@@ -58,19 +59,6 @@ namespace ClassroomManager
           return;
       }
       HandleUserSelection();
-    }
-    private void Register()
-    {
-      plugins.Register();
-
-      HandleUserSelection();
-    }
-
-    private Employee Authenticate()
-    {
-      Employee employee = plugins.AuthenticateEmployee();
-
-      return employee;
     }
     private static void ShowMenu(Employee employee)
     {

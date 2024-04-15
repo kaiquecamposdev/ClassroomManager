@@ -2,6 +2,7 @@ using ClassroomManager.lib;
 using ClassroomManager.models;
 using ClassroomManager.models.interfaces;
 using ClassroomManager.repositories;
+using ClassroomManager.usecases.errors;
 
 namespace ClassroomManager.usecases
 {
@@ -16,14 +17,14 @@ namespace ClassroomManager.usecases
 
       if (employee == null)
       {
-        throw new Exception("Credenciais inválidas.");
+        throw new InvalidCredentialsError();
       }
 
       bool passwordMatch = _bcryptProvider.VerifyPassword(data.Password, employee.Password);
 
       if (!passwordMatch)
       {
-        throw new Exception("Credenciais inválidas.");
+        throw new InvalidCredentialsError();
       }
 
       return employee;

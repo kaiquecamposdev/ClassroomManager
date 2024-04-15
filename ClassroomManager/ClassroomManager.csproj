@@ -5,12 +5,30 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<OutputPath>.\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="promptio\controllers\employee\**" />
     <EmbeddedResource Remove="promptio\controllers\employee\**" />
     <None Remove="promptio\controllers\employee\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="CLI\interfaces\IMenu.cs" />
+    <Compile Include="CLI\menu.cs" />
+    <Compile Include="usecases\consult-report.cs" />
+    <Compile Include="usecases\consult-report.cs" />
+    <Compile Include="usecases\factories\make-consult-report-use-case.cs" />
+    <Compile Include="usecases\factories\make-consult-report-use-case.cs" />
+    <Compile Include="usecases\factories\make-generate-report-use-case.cs" />
+    <Compile Include="usecases\generate-report.cs" />
+    <Compile Include="usecases\generate-report.cs" />
+    <Compile Include="usecases\generate-report.cs" />
+    <Compile Include="utils\DateFormat.cs" />
+    <Compile Include="utils\DateFormat.cs" />
+    <Compile Include="utils\DateFormat.cs" />
+    <Compile Include="utils\GetEquipmentId.cs" />
   </ItemGroup>
 
   <ItemGroup>

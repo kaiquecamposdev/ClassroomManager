@@ -6,10 +6,14 @@ namespace ClassroomManager.repositories.json
   public class JsonEquipmentsRepository : IEquipmentsRepository
   {
     private List<Equipment> items = [];
-    private readonly string _filePath = "equipments.json";
+    private readonly string _filePath;
 
     public JsonEquipmentsRepository()
     {
+      string projectRootDirectory = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, ".."));
+      string dbDirectoryPath = Path.Combine(projectRootDirectory, "db");
+      Directory.CreateDirectory(dbDirectoryPath);
+      _filePath = Path.Combine(dbDirectoryPath, "equipments.json");
       LoadEquipmentsFromFile().Wait();
     }
 
@@ -31,29 +35,9 @@ namespace ClassroomManager.repositories.json
       return items.Find(equipment => equipment.Id == id);
     }
 
-    public Equipment FindByBrand(string brand)
-    {
-      return items.Find(equipment => equipment.Brand == brand);
-    }
-
     public Equipment FindByModel(string model)
     {
       return items.Find(equipment => equipment.Model == model);
-    }
-
-    public Equipment FindByStatus(STATUS status)
-    {
-      return items.Find(equipment => equipment.Status.HasFlag(status));
-    }
-
-    public void Remove(string id)
-    {
-      int equipmentIndexForRemove = items.FindIndex(equipment => equipment.Id == id);
-
-      items.Remove(items.ElementAt(equipmentIndexForRemove));
-      _ = SaveEquipmentsToFile(items);
-
-      return;
     }
 
     private async Task LoadEquipmentsFromFile()

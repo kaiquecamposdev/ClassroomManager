@@ -9,10 +9,14 @@ namespace ClassroomManager.repositories.json
   {
     private List<Employee> items;
     private readonly BcryptProvider _bcryptProvider = new();
-    private readonly string _filePath = "employees.json";
+    private readonly string _filePath;
 
     public JsonEmployeesRepository()
     {
+      string projectRootDirectory = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, ".."));
+      string dbDirectoryPath = Path.Combine(projectRootDirectory, "db");
+      Directory.CreateDirectory(dbDirectoryPath);
+      _filePath = Path.Combine(dbDirectoryPath, "employees.json");
       LoadEmployeesFromFile().Wait();
     }
 
@@ -26,22 +30,12 @@ namespace ClassroomManager.repositories.json
 
     public Employee FindById(string id)
     {
-      throw new NotImplementedException();
+      return items.Find(employee => employee.Id == id);
     }
 
     public Employee FindByEnroll(int enroll)
     {
       return items.Find(employee => employee.Enroll == enroll);
-    }
-
-    public void Remove(string id)
-    {
-      int employeeIndexForRemove = items.FindIndex(employee => employee.Id == id);
-
-      items.Remove(items.ElementAt(employeeIndexForRemove));
-      _ = SaveEmployeesToFile(items);
-
-      return;
     }
 
     private async Task LoadEmployeesFromFile()

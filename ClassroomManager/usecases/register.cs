@@ -1,6 +1,7 @@
 ﻿using ClassroomManager.lib;
 using ClassroomManager.models;
 using ClassroomManager.repositories;
+using ClassroomManager.usecases.errors;
 
 namespace ClassroomManager.usecases
 {
@@ -17,7 +18,7 @@ namespace ClassroomManager.usecases
 
       if (employeeWithSameEnroll != null)
       {
-        throw new Exception("Funcionário já existe.");
+        throw new EmployeeAlreadyExist();
       }
 
       Employee employee = _employeesRepository.Create(new(data.Name, data.Telephone, password: password_hash, data.Enroll, data.Role));

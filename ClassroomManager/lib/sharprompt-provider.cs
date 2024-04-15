@@ -1,6 +1,8 @@
-﻿namespace ClassroomManager.lib
+﻿using ClassroomManager.lib.interfaces;
+
+namespace ClassroomManager.lib
 {
-  public class SharpromptProvider : ISharpromptInputProvider
+    public class SharpromptProvider : ISharpromptInputProvider
   {
     public int GetIntInput(string message)
     {
