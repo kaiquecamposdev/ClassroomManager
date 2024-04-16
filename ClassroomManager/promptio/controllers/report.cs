@@ -11,7 +11,7 @@ namespace ClassroomManager.promptio.controllers
     {
       try
       {
-        Report data = new(employeeId, equipmentId);
+        Report data = new(Guid.NewGuid().ToString(), employeeId, equipmentId);
 
         GenerateReportUseCase reportUseCase = MakeGenerateReportUseCase.Create();
         reportUseCase.Execute(data);

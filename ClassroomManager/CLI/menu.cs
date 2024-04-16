@@ -3,22 +3,13 @@ using ClassroomManager.lib;
 using ClassroomManager.models;
 using ClassroomManager.models.interfaces;
 using ClassroomManager.promptio.controllers;
-using ClassroomManager.usecases;
-using ClassroomManager.usecases.factories;
 using ClassroomManager.utils;
 using ConsoleTables;
 
-public class Menu : IMenu
+public class Menu(Employee employee) : IMenu
 {
-  private readonly Employee _employee;
+  private readonly Employee _employee = employee;
   private readonly SharpromptProvider _prompt = new();
-  private readonly EquipmentController _equipmentController = new();
-  private readonly ReportController _reportController = new();
-
-  public Menu(Employee employee)
-  {
-    _employee = employee;
-  }
 
   public void ShowMenu()
   {
@@ -71,7 +62,7 @@ public class Menu : IMenu
     {
       options = [
         "Consultar Equipamentos",
-        "Solicitação Equipamento",
+        "Solicitar Equipamento",
         "Criar Equipamento",
         "Relatório",
         "Sair"
@@ -104,6 +95,7 @@ public class Menu : IMenu
       "Ordernar por Nome",
       "Ordernar por Marca",
       "Ordernar por Status",
+      "Ordernar por Quantidade",
       "Voltar"
     ];
 
@@ -124,11 +116,14 @@ public class Menu : IMenu
       case "Ordernar por Status":
         equipments = [.. equipments.OrderBy(row => row.Status)];
         break;
+      case "Ordernar por Quantidade":
+        equipments = [.. equipments.OrderBy(row => row.Quantity)];
+        break;
       case "Voltar":
         return;
     }
 
-    ConsoleTable table = new("Nome", "Modelo", "Marca", "Status");
+    ConsoleTable table = new("Nome", "Modelo", "Marca", "Status", "Quantidade");
 
     for (int i = 0; i < equipments.Count; i++)
     {
@@ -140,7 +135,7 @@ public class Menu : IMenu
         STATUS.BORROWED => "Emprestado",
         _ => "Disponível",
       };
-      table.AddRow(equipment.Name, equipment.Model, equipment.Brand, status);
+      table.AddRow(equipment.Name, equipment.Model, equipment.Brand, status, equipment.Quantity);
     }
     table.Write();
 
@@ -165,7 +160,7 @@ public class Menu : IMenu
     for (int i = 0; i < equipments.Count; i++)
     {
       Equipment equipment = equipments[i];
-      equipmentsArray[0] = " Nome=" + equipment.Name + " Marca=" + equipment.Brand + " Modelo=" + equipment.Model + " Id=" + equipment.Id;
+      equipmentsArray[i] = " Nome=" + equipment.Name + " Marca=" + equipment.Brand + " Modelo=" + equipment.Model + " Id=" + equipment.Id;
     }
 
     string itemChosenByTheUser = _prompt.Select("Equipamentos:", equipmentsArray);
@@ -173,7 +168,6 @@ public class Menu : IMenu
     string equipmentId = GetEquipmentId.Execute(itemChosenByTheUser);
 
     Console.WriteLine(equipmentId);
-    return;
 
     ReportController.Generate(employeeId: _employee.Id, equipmentId);
 
@@ -235,7 +229,6 @@ public class Menu : IMenu
     string name = _prompt.GetStringInput("Nome");
     string model = _prompt.GetStringInput("Modelo");
     string brand = _prompt.GetStringInput("Marca");
-    string? description = _prompt.GetStringInput("Descrição");
     int quantity = _prompt.GetIntInput("Quantidade");
 
     string statusString = _prompt.Select("Status", new[] { "Disponível", "Reservado", "Emprestado" });
@@ -247,7 +240,7 @@ public class Menu : IMenu
       _ => STATUS.AVAILABLE,
     };
 
-    Equipment equipment = new(name, model, brand, description, quantity, status);
+    Equipment equipment = new(Guid.NewGuid().ToString(), name, model, brand, quantity, status);
 
     EquipmentController.Create(equipment);
 

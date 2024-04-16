@@ -12,7 +12,7 @@ namespace ClassroomManager.repositories.inMemory
     {
       items = new List<Employee>()
         {
-            new Employee("Admin", 123456789, password: _bcryptProvider.HashPassword("admin"), 123456, ROLE.ADMIN)
+            new Employee( Guid.NewGuid().ToString(), "Admin", 123456789, password: _bcryptProvider.HashPassword("admin"), 123456, ROLE.ADMIN)
         };
     }
 

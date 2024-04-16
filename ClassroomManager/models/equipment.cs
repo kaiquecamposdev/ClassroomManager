@@ -2,9 +2,9 @@
 
 namespace ClassroomManager.models
 {
-    public class Equipment(string name, string model, string brand, int quantity, STATUS status) : IEquipment
+    public class Equipment(string id, string name, string model, string brand, int quantity, STATUS status) : IEquipment
   {
-    public string Id { get; private set; } = Guid.NewGuid().ToString();
+    public string Id { get; set; } = id;
     public string Name { get; set; } = name;
     public string Model { get; set; } = model;
     public string Brand { get; set; } = brand;

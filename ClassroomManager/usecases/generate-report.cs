@@ -18,7 +18,7 @@ namespace ClassroomManager.usecases
         throw new ResourceNotFoundError();
       }
 
-      Report report = _reportRepository.Create(new(data.EmployeeId, data.EquipmentId));
+      Report report = _reportRepository.Create(new(Guid.NewGuid().ToString(), data.EmployeeId, data.EquipmentId));
 
       return report;
     }

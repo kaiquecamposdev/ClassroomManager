@@ -9,7 +9,7 @@ namespace ClassroomManager.usecases
 
     public Equipment Execute(Equipment data)
     {
-      Equipment equipment = _equipmentsRepository.Create(new(data.Name, data.Model, data.Brand, data.Description, data.Quantity, data.Status));
+      Equipment equipment = _equipmentsRepository.Create(new(Guid.NewGuid().ToString(), data.Name, data.Model, data.Brand, data.Quantity, data.Status));
 
       return equipment;
     }

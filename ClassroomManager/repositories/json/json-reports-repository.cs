@@ -15,6 +15,7 @@ namespace ClassroomManager.repositories.json
       string dbDirectoryPath = Path.Combine(projectRootDirectory, "db");
       Directory.CreateDirectory(dbDirectoryPath);
       _filePath = Path.Combine(dbDirectoryPath, "reports.json");
+
       LoadReportsFromFile().Wait();
     }
 

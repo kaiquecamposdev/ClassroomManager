@@ -46,18 +46,14 @@ namespace ClassroomManager
         case "Sair":
           string exitOption = _prompt.Select("Tem certeza que deseja sair?", new[] { "Sim", "Não" });
 
-          if (exitOption == "Sim")
-          {
-            Console.WriteLine("Até mais!");
-            return;
-          }
-          else
+          if (exitOption == "Não")
           {
             HandleUserSelection();
           }
+
+          Console.WriteLine("Até mais!");
           return;
       }
-      HandleUserSelection();
     }
     private static void ShowMenu(Employee employee)
     {

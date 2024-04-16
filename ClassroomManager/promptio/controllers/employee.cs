@@ -37,7 +37,7 @@ namespace ClassroomManager.promptio.controllers
 
       try
       {
-        Employee employee = new(name, telephone, password, enroll, role);
+        Employee employee = new(Guid.NewGuid().ToString(), name, telephone, password, enroll, role);
 
         RegisterUseCase employeeUseCase = MakeRegisterUseCase.Create();
         employeeUseCase.Execute(employee);

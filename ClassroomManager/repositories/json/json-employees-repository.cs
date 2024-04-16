@@ -17,6 +17,7 @@ namespace ClassroomManager.repositories.json
       string dbDirectoryPath = Path.Combine(projectRootDirectory, "db");
       Directory.CreateDirectory(dbDirectoryPath);
       _filePath = Path.Combine(dbDirectoryPath, "employees.json");
+
       LoadEmployeesFromFile().Wait();
     }
 
@@ -49,7 +50,7 @@ namespace ClassroomManager.repositories.json
       {
         items = new List<Employee>()
         {
-          new("Admin", 123456789, password: _bcryptProvider.HashPassword("admin"), 123456, ROLE.ADMIN)
+          new(Guid.NewGuid().ToString(), "Admin", 123456789, password: _bcryptProvider.HashPassword("admin"), 123456, ROLE.ADMIN)
         };
       }
     }

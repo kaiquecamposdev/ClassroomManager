@@ -21,7 +21,7 @@ namespace ClassroomManager.usecases
         throw new EmployeeAlreadyExist();
       }
 
-      Employee employee = _employeesRepository.Create(new(data.Name, data.Telephone, password: password_hash, data.Enroll, data.Role));
+      Employee employee = _employeesRepository.Create(new(Guid.NewGuid().ToString(), data.Name, data.Telephone, password: password_hash, data.Enroll, data.Role));
 
       return employee;
     }
