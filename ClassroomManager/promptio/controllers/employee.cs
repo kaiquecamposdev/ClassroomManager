@@ -75,7 +75,6 @@ namespace ClassroomManager.promptio.controllers
         Employee employee = employeeUseCase.Execute(authenticateEmployeeRequest);
 
         return employee;
-
       }
       catch (InvalidCredentialsError err)
       {

@@ -163,11 +163,9 @@ public class Menu(Employee employee) : IMenu
       equipmentsArray[i] = " Nome=" + equipment.Name + " Marca=" + equipment.Brand + " Modelo=" + equipment.Model + " Id=" + equipment.Id;
     }
 
-    string itemChosenByTheUser = _prompt.Select("Equipamentos:", equipmentsArray);
+    string itemChosenByTheUser = _prompt.Select("Equipamentos", equipmentsArray);
 
     string equipmentId = GetEquipmentId.Execute(itemChosenByTheUser);
-
-    Console.WriteLine(equipmentId);
 
     ReportController.Generate(employeeId: _employee.Id, equipmentId);
 
@@ -200,11 +198,6 @@ public class Menu(Employee employee) : IMenu
         STATUS.BORROWED => "Emprestado",
         _ => "Disponível",
       };
-
-      if (equipment.Status == STATUS.AVAILABLE)
-      {
-        return;
-      }
 
       string dateFormatted = DateFormat.Execute(report.CreatedAt);
 

@@ -38,10 +38,6 @@ namespace ClassroomManager
           break;
         case "Cadastro":
           employeeController.Register();
-
-          Console.Clear();
-          Console.WriteLine("Usuário cadastrado com sucesso!");
-          Task.Delay(500).Wait();
           break;
         case "Sair":
           string exitOption = _prompt.Select("Tem certeza que deseja sair?", new[] { "Sim", "Não" });
@@ -54,6 +50,7 @@ namespace ClassroomManager
           Console.WriteLine("Até mais!");
           return;
       }
+      HandleUserSelection();
     }
     private static void ShowMenu(Employee employee)
     {

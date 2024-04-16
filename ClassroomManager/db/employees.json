@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "acbe7d7f-e44b-44e4-a5c0-481121205a17",
+    "Name": "Admin",
+    "Telephone": 123456789,
+    "Password": "$2a$11$Ip0rSKSRYFbXDg6lpoDw5.AQyNGv2y1NfAaGv9mugNr9zAo1vlqO2",
+    "Enroll": 123456,
+    "Role": 0
+  },
+  {
+    "Id": "8feba498-c227-4879-9775-2f0a7cbc1f36",
+    "Name": "Yld",
+    "Telephone": null,
+    "Password": "$2a$11$XkmrEaYLBJ4LxmgnSXmT4O7VVKtHhLdqRHF3SHsvi.SDRiEI/93OG",
+    "Enroll": 123321,
+    "Role": 1
+  }
+]

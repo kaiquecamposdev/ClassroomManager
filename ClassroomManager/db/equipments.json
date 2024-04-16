@@ -1,18 +1,10 @@
 [
   {
-    "Id": "5cc9ee3f-a2c4-49eb-9ed6-ad268cbfc0c3",
-    "Name": "Projetor",
-    "Model": "aodsakdo12321dksa",
+    "Id": "63856ea4-138c-407e-890d-c800d0d9b7da",
+    "Name": "Projeto",
+    "Model": "Epson",
     "Brand": "Epson",
     "Quantity": 10,
-    "Status": 0
-  },
-  {
-    "Id": "6df91365-2a58-4bea-b1fa-9089e5c11947",
-    "Name": "Projetor",
-    "Model": "DKSJA2",
-    "Brand": "Epson",
-    "Quantity": 1,
     "Status": 0
   }
 ]
