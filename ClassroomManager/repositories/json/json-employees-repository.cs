@@ -7,7 +7,7 @@ namespace ClassroomManager.repositories.json
 {
     public class JsonEmployeesRepository : IEmployeesRepository
   {
-    private List<Employee> items;
+    private List<Employee> items = [];
     private readonly BcryptProvider _bcryptProvider = new();
     private readonly string _filePath;
 

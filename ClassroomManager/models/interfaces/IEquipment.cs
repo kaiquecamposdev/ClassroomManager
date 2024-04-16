@@ -16,7 +16,7 @@ namespace ClassroomManager.models.interfaces
         [Required(ErrorMessage = "Modelo é requirida")]
         string Model { get; set; }
         [Required(ErrorMessage = "Marca é requirida")]
-        string? Description { get; set; }
+        string Brand { get; set; }
         int Quantity { get; set; }
         [Required(ErrorMessage = "Status é requirido")]
         STATUS Status { get; set; }

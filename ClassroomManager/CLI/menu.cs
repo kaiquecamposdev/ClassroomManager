@@ -101,10 +101,10 @@ public class Menu : IMenu
 
     string[] options = [
       "Sem ordenação",
-            "Ordernar por Nome",
-            "Ordernar por Marca",
-            "Ordernar por Status",
-            "Voltar"
+      "Ordernar por Nome",
+      "Ordernar por Marca",
+      "Ordernar por Status",
+      "Voltar"
     ];
 
     string tableOptions = _prompt.Select("Selecione uma das opções", options);
@@ -128,7 +128,7 @@ public class Menu : IMenu
         return;
     }
 
-    ConsoleTable table = new("Nome", "Modelo", "Marca", "Descrição", "Quantidade", "Status");
+    ConsoleTable table = new("Nome", "Modelo", "Marca", "Status");
 
     for (int i = 0; i < equipments.Count; i++)
     {
@@ -140,7 +140,7 @@ public class Menu : IMenu
         STATUS.BORROWED => "Emprestado",
         _ => "Disponível",
       };
-      table.AddRow(equipment.Name, equipment.Model, equipment.Brand, equipment.Description, equipment.Quantity, status);
+      table.AddRow(equipment.Name, equipment.Model, equipment.Brand, status);
     }
     table.Write();
 
@@ -171,6 +171,9 @@ public class Menu : IMenu
     string itemChosenByTheUser = _prompt.Select("Equipamentos:", equipmentsArray);
 
     string equipmentId = GetEquipmentId.Execute(itemChosenByTheUser);
+
+    Console.WriteLine(equipmentId);
+    return;
 
     ReportController.Generate(employeeId: _employee.Id, equipmentId);
 

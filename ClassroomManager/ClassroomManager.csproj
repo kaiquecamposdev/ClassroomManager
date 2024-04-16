@@ -15,20 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="CLI\interfaces\IMenu.cs" />
-    <Compile Include="CLI\menu.cs" />
-    <Compile Include="usecases\consult-report.cs" />
-    <Compile Include="usecases\consult-report.cs" />
-    <Compile Include="usecases\factories\make-consult-report-use-case.cs" />
-    <Compile Include="usecases\factories\make-consult-report-use-case.cs" />
-    <Compile Include="usecases\factories\make-generate-report-use-case.cs" />
-    <Compile Include="usecases\generate-report.cs" />
-    <Compile Include="usecases\generate-report.cs" />
-    <Compile Include="usecases\generate-report.cs" />
-    <Compile Include="utils\DateFormat.cs" />
-    <Compile Include="utils\DateFormat.cs" />
-    <Compile Include="utils\DateFormat.cs" />
-    <Compile Include="utils\GetEquipmentId.cs" />
+	
   </ItemGroup>
 
   <ItemGroup>
