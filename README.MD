@@ -1,33 +1,56 @@
 # ClassroomManager 🏫
-O projeto ClassroomManager é um aplicativo de linha de comando (CLI) completo que facilita o gerenciamento de equipamentos e funcionários. Ele capacita os usuários a criar, autenticar e gerar relatórios sobre funcionários, além de criar e consultar equipamentos. Ao aproveitar interações eficientes e repositórios de dados robustos, o ClassroomManager garante autenticação segura, tratamento eficiente de dados e relatórios precisos. Com opções de menu claras e repositórios estruturados, este projeto otimiza os processos de fluxo de trabalho e melhora a experiência geral do usuário.
-### Recursos 📦
-- **Gerenciamento de Funcionários:** Crie, edite, exclua e visualize informações de funcionários, incluindo nome, função, departamento e outros detalhes relevantes.
-- **Gerenciamento de Equipamentos:** Crie, edite, exclua e visualize informações de equipamentos, incluindo nome, tipo, modelo, número de série e status.
-- **Autenticação Segura:** Implementa um sistema de autenticação de usuário seguro, com hashing de senha utilizando Bcrypt para proteger as credenciais.
-- **Relatórios Detalhados:** Gere relatórios personalizados sobre funcionários e equipamentos, incluindo listas, resumos e estatísticas.
-- **Interface de Usuário Amigável:** Oferece uma interface de linha de comando intuitiva e fácil de usar, com menus claros e opções de navegação.
-- **Armazenamento de Dados:** Utiliza JSON para armazenar e recuperar dados de forma eficiente e confiável.
-### Tecnologias Utilizadas 💻
-- **.NET Core 8.0:** Framework para desenvolvimento de aplicações web e de linha de comando.
-- **Bcrypt:** Biblioteca para criptografia de senhas, garantindo a segurança das credenciais.
-- **Sharprompt:** Biblioteca para lidar com a entrada do usuário através da linha de comando.
-- **JSON:** Formato de dados utilizado para armazenamento e recuperação de informações.
-### Como Fazer Login como Administrador 🕴️
-Este guia mostrará como fazer login como administrador usando o login de matrícula 123456 e a senha admin.
-1. Acesse a tela de login.
-2. Adicione as credenciais de matrícula `123456` e senha `admin`.
-3. Agora você tem acesso as funcionalidades de administrador.
-### Arquitetura ⚙️
-O projeto segue uma arquitetura modular com clara separação de responsabilidades. Ele utiliza repositórios e casos de uso para interagir com modelos de dados, melhorando a manutenibilidade e a escalabilidade. A base de código é organizada com classes e interfaces bem definidas.
-### Qualidade do Código 🔩
-A base de código demonstra boas práticas de qualidade e estilo com convenções de nomenclatura consistentes, documentação adequada e estrutura clara. Ela segue os princípios SOLID e utiliza padrões de projeto para melhorar a manutenibilidade do código. A base de código é fácil de ler e entender.
-### Modularidade 🧩
-A base de código exibe alta modularidade e reusabilidade, permitindo fácil extensão e manutenção. Os componentes são bem encapsulados, promovendo a reutilização de código e a separação de responsabilidades. O uso de fábricas para criar instâncias aumenta a flexibilidade e a modularidade.
-### Desempenho ⚡️
-O projeto enfatiza a eficiência e a velocidade na recuperação e processamento de dados. Ao utilizar armazenamento na memória e estruturas de dados eficientes, o aplicativo otimiza o uso de recursos. As otimizações de desempenho são essenciais para fornecer uma experiência de usuário perfeita.
-### Segurança 🛡️
-As medidas de segurança incluem hashing de senha usando Bcrypt para autenticação segura. O projeto segue as melhores práticas para proteção de dados e controle de acesso, protegendo informações confidenciais. O tratamento de erros e a validação aprimoram ainda mais a segurança dentro do aplicativo.
-### Contribuições 🤝
-Contribuições para o projeto são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
-### Licença 📝
-Este projeto é licenciado sob a [MIT License](./LICENSE).
+
+The ClassroomManager project is a comprehensive command-line interface (CLI) application that facilitates equipment and employee management. It empowers users to create, authenticate, and generate reports on employees, as well as create and consult equipment. By leveraging efficient interactions and robust data repositories, ClassroomManager ensures secure authentication, efficient data handling, and accurate reporting. With clear menu options and structured repositories, this project streamlines workflow processes and enhances the overall user experience.
+
+### Features 📦
+
+- **Employee Management:** Create, edit, delete, and view employee information, including name, role, department, and other relevant details.
+- **Equipment Management:** Create, edit, delete, and view equipment information, including name, type, model, serial number, and status.
+- **Secure Authentication:** Implements a secure user authentication system, with password hashing using Bcrypt to protect credentials.
+- **Detailed Reports:** Generate customized reports on employees and equipment, including lists, summaries, and statistics.
+- **User-Friendly Interface:** Offers an intuitive and easy-to-use command-line interface, with clear menus and navigation options.
+- **Data Storage:** Uses JSON to store and retrieve data efficiently and reliably.
+
+### Technologies Used 💻
+
+- **.NET Core 8.0:** Framework for developing web and command-line applications.
+- **Bcrypt:** Library for password encryption, ensuring the security of credentials.
+- **Sharprompt:** Library for handling user input through the command line.
+- **JSON:** Data format used for storage and retrieval of information.
+
+### How to Login as Administrator 🕴️
+
+This guide will show you how to login as an administrator using the enrollment login 123456 and the password admin.
+
+1. Access the login screen.
+2. Add the enrollment credentials `123456` and password `admin`.
+3. Now you have access to the administrator functionalities.
+
+### Architecture ⚙️
+
+The project follows a modular architecture with clear separation of concerns. It uses repositories and use cases to interact with data models, improving maintainability and scalability. The codebase is organized with well-defined classes and interfaces.
+
+### Code Quality 🔩
+
+The codebase demonstrates good quality and style practices with consistent naming conventions, proper documentation, and clear structure. It adheres to SOLID principles and uses design patterns to improve code maintainability. The codebase is easy to read and understand.
+
+### Modularity 🧩
+
+The codebase exhibits high modularity and reusability, allowing for easy extension and maintenance. Components are well encapsulated, promoting code reuse and separation of concerns. The use of factories to create instances enhances flexibility and modularity.
+
+### Performance ⚡️
+
+The project emphasizes efficiency and speed in data retrieval and processing. By using in-memory storage and efficient data structures, the application optimizes resource usage. Performance optimizations are key to providing a seamless user experience.
+
+### Security 🛡️
+
+Security measures include password hashing using Bcrypt for secure authentication. The project follows best practices for data protection and access control, safeguarding sensitive information. Error handling and validation further enhance security within the application.
+
+### Contributing 🤝
+
+Contributions to the project are welcome! Feel free to open issues or submit pull requests.
+
+### License 📝
+
+This project is licensed under the [MIT License](./LICENSE). 
+
