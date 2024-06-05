@@ -1,8 +1,10 @@
 # ClassroomManager 🏫
 
+## 📍 Overview
+
 The ClassroomManager project is a comprehensive command-line interface (CLI) application that facilitates equipment and employee management. It empowers users to create, authenticate, and generate reports on employees, as well as create and consult equipment. By leveraging efficient interactions and robust data repositories, ClassroomManager ensures secure authentication, efficient data handling, and accurate reporting. With clear menu options and structured repositories, this project streamlines workflow processes and enhances the overall user experience.
 
-## 📍 Features
+## ✨ Features
 
 - **Employee Management:** Create, edit, delete, and view employee information, including name, role, department, and other relevant details.
 - **Equipment Management:** Create, edit, delete, and view equipment information, including name, type, model, serial number, and status.
